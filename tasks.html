@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            letter-spacing: 0.3px;
+        }
+        .section {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .task-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #BABABA;
+            border-radius: 5px;
+        }
+        .task-info {
+            flex-grow: 1;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .task-title {
+            font-size: 16px;
+            margin: 0;
+        }
+        .task-reward {
+            font-size: 14px;
+            color: #ccc;
+            margin: 0;
+        }
+        .task-button {
+            width: 20px;
+            height: 20px;
+            background-color: #7cd6d6;
+            border-radius: 50%;
+        }
+        .task-button:hover {
+            background-color: gray;
+        }
+        .back-button {
+            display: block;
+            padding: 15px 0px;
+            background-color: #444;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="section">
+    <div class="section-title">Ежедневные задания</div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 1</p>
+            <p class="task-reward">Reward +1000</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 1</p>
+            <p class="task-reward">Reward +1000</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Список заданий</div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 1</p>
+            <p class="task-reward">Reward +1000</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 2</p>
+            <p class="task-reward">Reward +500</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 3</p>
+            <p class="task-reward">Reward +200</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+    <div class="task">
+        <div class="task-icon"></div>
+        <div class="task-info">
+            <p class="task-title">Title and text of the task 4</p>
+            <p class="task-reward">Reward +1000</p>
+        </div>
+        <div class="task-button"></div>
+    </div>
+</div>
+
+<a class="section back-button" href="index.html">BACK</a>
+</body>
+</html>
