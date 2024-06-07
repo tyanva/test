@@ -16,14 +16,14 @@
             font-family: Arial, sans-serif;
         }
         .header {
-            width: 400px;
+            width: 380px;
             background-color: rgba(0, 0, 0, 0.3);
             background-color: #444;
             border-radius: 10px;
-            padding: 5px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 5px 10px;
             margin: 20px 0px;
         }
         .button-container {
@@ -51,24 +51,24 @@
             margin-left: 10px;
         }
         .grid-container {
-            width: 400px;
             background-color: #444;
             border-radius: 10px;
-            margin: 0;
-            padding: 10px;
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            grid-column-gap: 10px;
-            grid-row-gap: 10px;
+            grid-template-columns: repeat(10, 30px);
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            gap: 8px;
+            width: 400px;
+            height: 400px;
+            padding: 10px 0px;
         }
         .grid-item {
             width: 30px;
             height: 30px;
             background-color: #3a2626;
         }
-        .grid-item:nth-child(10n) {
-            margin-right: -5px;
-        }
+
         .selection {
             transition: background-color 0.2s linear; /* можно обращаться к дочерним эл */
         }
@@ -78,18 +78,25 @@
         }
         .back-button {
             width: 400px;
-            display: block;
+            margin: 0 auto;
+            margin-bottom: 30px;
             background-color: #444;
             color: white;
             text-align: center;;
             border-radius: 10px;
-            padding: 15px 10px;
+            padding: 15px 0px;
             font-size: 18px;
             font-family: Arial, sans-serif;
             text-decoration: none;
             margin: 20px 0px;
             letter-spacing: 2px;
         }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
 
     </style>
 </head>
@@ -116,6 +123,7 @@
         document.getElementById("grid-container").appendChild(div);
     }
 </script>
-<a class="back-button" href="index.html">BACK</a>
+
+<div class="back-button" ><a href="index.html">BACK</a></div>
 </body>
 </html>
