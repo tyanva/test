@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="eu">
 <head>
     <meta charset="UTF-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Layout</title>
     <style>
         body {
@@ -10,14 +10,13 @@
             color: white;
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
             letter-spacing: 0.3px;
         }
         .header {
             max-width: 380px;
             margin: 0 auto;
             margin-bottom: 20px;
+            margin-top: 20px;
             background-color: #444;
             border-radius: 10px;
             display: flex;
@@ -112,7 +111,16 @@
         <span>00475</span>
     </div>
 </div>
-
+<div class="grid-container" id="grid-container"></div>
+<script>
+    var i;
+    var numDivs = 100; // количество div блоков, которые нужно создать
+    for (i = 0; i < numDivs; i++) {
+        var div = document.createElement("div");
+        div.className = "grid-item selection";
+        document.getElementById("grid-container").appendChild(div);
+    }
+</script>
 
 <div class="back-button" ><a href="index.html">BACK</a></div>
 </body>
