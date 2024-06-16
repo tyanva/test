@@ -2,7 +2,7 @@ export function createHook(canvas, blockWidth, blockHeight) {
     const hook = {
         x: canvas.width / 2, // Начальная позиция крюка по горизонтали
         y: 0, // Начальная позиция крюка по вертикали
-        length: canvas.height/8, // Длина крюка
+        length: canvas.height/7, // Длина крюка
         width: blockWidth, // Ширина крюка
         height: blockHeight, // Высота крюка
         angle: 0, // Начальный угол наклона крюка
