@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
         drawBaseBlock(ctx, baseImg, baseBlock); // Отрисовка базового блока
         drawBlocks(ctx, blockImgDefault, baseImg, blocks); // Отрисовка всех блоков
         drawCounter(ctx, placedBlocksCount); // Отрисовка счетчика блоков
-        bgHeight += 0.008; // Постепенное перемещение фона вверх
         requestAnimationFrame(gameLoop); // Запуск игрового цикла
     }
 
