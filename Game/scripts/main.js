@@ -7,12 +7,11 @@ import { drawCounter } from './ui.js';
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-var gameWidth = window.innerWidth;
-var gameHeight = window.innerHeight;
-var ratio = 1.7;
+const gameWidth = window.innerWidth;
+const gameHeight = window.innerHeight;
+const ratio = 1.7;
 
 if (gameWidth / gameHeight < ratio) {
-    gameWidth = Math.ceil(gameHeight / ratio);
     canvas.width = gameWidth;
     canvas.height = gameHeight;
 }
@@ -23,9 +22,9 @@ function resizeCanvas() {
 }
 window.addEventListener('resize', resizeCanvas);
 
-var bgImg = new Image();
+const bgImg = new Image();
 bgImg.src = "./assets/background.png";
-export var bgHeight = 100; // Высота фона
+export let bgHeight = 100; // Высота фона
 
 // Настройки игры
 const blockWidth = 100;
@@ -33,13 +32,15 @@ const blockHeight = 80; // Высота блока 80
 const blockSpeed = 5; // Скорость падения блока
 const overlapThreshold = 0.4; // Процент пересечения кубов 
 const highOverlapThreshold = 0.85; // Процент высокого совпадения 
-const swingAmplitude = 15; // Амплитуда покачивания
+const swingAmplitude = 5; // Амплитуда покачивания
 const swingSpeed = 0.05; // Скорость покачивания
+const shiftSpeed = 2; // Скорость сдвига
+const maxBlocks = 4; // Максимальное количество блоков
 
-var blockImgDefault = new Image();
+let blockImgDefault = new Image();
 blockImgDefault.src = "./assets/block.png";
 
-var baseImg = new Image();
+let baseImg = new Image();
 baseImg.src = "./assets/block-perfect.png";
 
 const hook = createHook(canvas, blockWidth, blockHeight); // Создание крюка
@@ -48,6 +49,8 @@ let blocks = []; // Массив блоков
 let placedBlocksCount = 0; // Счетчик установленных блоков
 let swingAngle = 0; // Текущий угол отклонения
 let swingDirection = 1; // Направление покачивания
+let targetShift = 0; // Целевой сдвиг
+let currentShift = 0; // Текущий сдвиг
 
 const baseBlock = {
     x: (canvas.width - 120) / 2, // Позиция базового блока по горизонтали, ширина 120
@@ -58,10 +61,18 @@ const baseBlock = {
 };
 
 function lowerBlocks() {
-    blocks.forEach(block => block.y += blockHeight);
-    baseBlock.y += blockHeight;
-    bgHeight += blockHeight;
-    blocks = blocks.filter(block => block.y < canvas.height);
+    targetShift += blockHeight; // Устанавливаем целевой сдвиг на величину высоты блока
+}
+
+function updateShift() {
+    if (currentShift < targetShift) {
+        const shiftStep = Math.min(shiftSpeed, targetShift - currentShift);
+        blocks.forEach(block => block.y += shiftStep);
+        baseBlock.y += shiftStep;
+        bgHeight += shiftStep;
+        currentShift += shiftStep;
+        blocks = blocks.filter(block => block.y < canvas.height);
+    }
 }
 
 function swingBlocks() {
@@ -121,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     blocks.push(fallingBlock); // Добавление блока в массив блоков, если он не упал на землю
                     placedBlocksCount++; // Увеличение счетчика установленных блоков
                     if (placedBlocksCount >= 2) {
-                        lowerBlocks(); // Опустить все блоки, базовый блок и фон
+                        lowerBlocks(); // Устанавливаем целевой сдвиг
+                    }
+                    if (blocks.length > maxBlocks) {
+                        blocks.shift(); // Удаляем первый блок, если их больше максимального количества
                     }
                 }
                 fallingBlock = null; // Сброс падающего блока
@@ -129,16 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         swingBlocks(); // Покачивание блоков
+        updateShift(); // Плавный сдвиг блоков и фона
         drawBaseBlock(ctx, baseImg, baseBlock); // Отрисовка базового блока
         drawBlocks(ctx, blockImgDefault, baseImg, blocks); // Отрисовка всех блоков
         drawCounter(ctx, placedBlocksCount); // Отрисовка счетчика блоков
+        bgHeight += 0.008; // Постепенное перемещение фона вверх
         requestAnimationFrame(gameLoop); // Запуск игрового цикла
     }
 
     gameLoop();
     
     clickEvent(canvas, () => {
-        if (!fallingBlock) {
+        if (!fallingBlock && blocks.length < maxBlocks) {
             const hookPos = hook.getPosition();
             fallingBlock = {
                 x: hookPos.hookX - blockWidth / 2, // Начальная позиция блока
