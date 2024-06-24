@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Prevent body scrolling */
+}
+
+#app {
+    width: 320px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure full height for the container */
+}
+
+header {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
+    overflow: auto; /* Enable scrolling */
+}
+
+.settings-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background: url('settings-icon.png') no-repeat center center;
+    background-size: cover;
+}
+
+main {
+    padding: 20px;
+    flex-grow: 1; /* Allow main content to grow */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #ddd;
+    background: #f9f9f9;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.nav-btn {
+    flex-grow: 1;
+    padding: 10px 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.nav-btn.active {
+    background: yellow;
+}
+
+/* Specific styles for each page */
+.copy-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+}
+
+.rankings {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.rankings ol {
+    padding-left: 20px;
+}
+
+.rankings li {
+    margin-bottom: 10px;
+}
+
+.profit-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    flex-grow: 1;
+    align-items: center;
+}
+
+.cell {
+    width: 100%;
+    background: #ccc;
+    position: relative;
+    aspect-ratio: 1 / 1; 
+}
+
+.cell::after {
+    content: '';
+    display: block;
+    padding-bottom: 100%; /* 1:1 Aspect Ratio */
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.tab {
+    padding-bottom: 20px;
+}
+
+.tab-btn {
+    flex-grow: 1;
+    padding: 10px 0;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: yellow;
+}
+
+
+
+.task-list {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.task-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.task-title {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.task-reward {
+    color: green;
+}
