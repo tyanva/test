@@ -1,0 +1,260 @@
+body {
+    /* Тут шрифты сделать */
+    font-family: Arial, sans-serif; 
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    background-image: url(./bg_menu.svg); 
+    /* Full height */
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;  
+    background-position: center;
+}
+
+.header-content {
+    /* Фон шапки */
+    background-color: #f1f1f1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   }
+
+#app {
+    height: 100%;
+    background-color: #7d7d7d6e;
+    margin: 0 10px;
+}
+
+#tab-content {
+    margin: 0 4px;
+}
+
+.top-nav {
+    margin: 0;
+    margin-bottom: 8px;
+}
+.top-nav, .bot-nav {
+    display: flex;
+    justify-content: center;
+    background-color: #e9e9e9;
+
+}
+
+.content-nav div {
+    padding: 0;
+    cursor: pointer;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.content-main {
+    background-color: #ff0000;
+    min-height: 300px;
+}
+
+.bot-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 20px);
+
+}
+.profit-btn {
+    margin: 10px 0;
+}
+
+button {
+    padding: 8px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+.copy-btn {
+    background-color: #91ffac49;
+    margin: 8px 0;
+}
+.nav-btn.active {
+    background-color: rgba(255, 255, 0, 0.6);
+}
+.top-nav-btn.active {
+    background-color: rgba(255, 255, 0, 0.6);
+}
+
+.list-item {
+    display: flex; 
+}
+
+.listBlocks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* settings*/
+
+#settingsButton {
+    cursor: pointer;
+}
+
+#settingsOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#settingsOverlay.hidden {
+    display: none;
+}
+
+#settingsWindow {
+    background: white;
+    font-size: 22px;
+    padding: 10px;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+}
+#settingsTitle {
+    margin-bottom: 8px;
+
+}
+#settingsWindow ol {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#settingsCloseButton {
+    margin-top: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* */
+.hover-block {
+    background-color: #60e5da;  
+    position: relative;
+}
+
+.hover-block::after {
+    content: attr(data-popup);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Перенос текста */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hover-block:hover::after {
+    display: block;
+}
+
+.grid {
+    display: grid;
+    max-width: calc(100vh - 25vh);
+    grid-template-columns: repeat(5, 1fr);
+    flex-grow: 1;
+    gap: 5px;
+    align-items: center;
+}
+
+.cell {
+    margin-bottom: 5px;
+    width: 100%;
+    background-image: url(./assets/cell.png);
+    background-size: cover;
+    position: relative;
+    aspect-ratio: 1 / 1; 
+}
+
+.cell::after {
+    content: '';
+    display: block;
+    padding-bottom: 100%; /* 1:1 Aspect Ratio */
+}
+
+/* --------------------- Canvas  --------------------------  */
+
+.canvasContainerArea {
+    width: 75vh; /* 75% от высоты экрана */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1px;
+    justify-content: center;
+}
+.cellArea {
+    width: 100%;
+    padding-top: 100%; /* Это делает ячейки квадратными */
+    position: relative;
+    background-image: url('./assets/cell.png'); /* Путь к вашему изображению */
+    background-size: cover; /* Изображение будет покрывать всю ячейку */
+    background-position: center; /* Центрировать изображение */
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.cellArea.building {
+    background-image: url('./assets/cell-building.png'); /* Путь к вашему изображению building.png */
+}
+.popupArea {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+.popupArea.active {
+    display: block;
+}
+.overlayArea {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 500;
+}
+.overlayArea.active {
+    display: block;
+}

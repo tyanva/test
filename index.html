@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Settings -->
+    <div id="settingsOverlay" class="hidden">
+        <div id="settingsWindow">
+            <div id="settingsTitle">Settings</div>
+            <ol>
+                <li>Set 1</li>
+                <li>Set 2</li>
+                <li>Set 3</li>
+            </ol>           
+            <button id="settingsCloseButton">Back</button>
+        </div>
+    </div>
+    <!-- Page -->
+    <div id="app">
+        <header>
+            <div class="header-content">
+                <div class="coins">NOW COINS: <span id="coin">10050</span></div>
+                <div id="settingsButton" class="settings-icon">⚙️</div>
+            </div>
+        </header>
+        <main id="main-content">
+            <!-- Content will be loaded here dynamically -->
+        </main>
+        <!-- Navigation -->
+        <nav class="bot-nav">
+            <button id="upgrade-btn" class="nav-btn">upgrade</button>
+            <button id="fren-btn" class="nav-btn">fren</button>
+            <button id="build-btn" class="nav-btn active">build</button>
+            <button id="task-btn" class="nav-btn">task</button>
+            <button id="rank-btn" class="nav-btn">rank</button>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
