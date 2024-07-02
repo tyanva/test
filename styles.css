@@ -183,29 +183,6 @@ button:focus {
     display: block;
 }
 
-.grid {
-    display: grid;
-    max-width: calc(100vh - 25vh);
-    grid-template-columns: repeat(5, 1fr);
-    flex-grow: 1;
-    gap: 5px;
-    align-items: center;
-}
-
-.cell {
-    margin-bottom: 5px;
-    width: 100%;
-    background-image: url(./assets/cell.png);
-    background-size: cover;
-    position: relative;
-    aspect-ratio: 1 / 1; 
-}
-
-.cell::after {
-    content: '';
-    display: block;
-    padding-bottom: 100%; /* 1:1 Aspect Ratio */
-}
 
 /* --------------------- Canvas  --------------------------  */
 
@@ -219,8 +196,8 @@ button:focus {
     justify-content: center;
 }
 .cellArea {
-    width: 100%;
-    padding-top: 100%; /* Это делает ячейки квадратными */
+    width: 90%;
+    padding-top: 90%; /* Это делает ячейки квадратными */
     position: relative;
     background-image: url('./assets/cell.png'); /* Путь к вашему изображению */
     background-size: cover; /* Изображение будет покрывать всю ячейку */
