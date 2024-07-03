@@ -64,9 +64,7 @@ body {
     justify-content: space-around;
     background-color: #f1f1f1;
     border-top: 1px solid #ccc;
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - 20px);
+    
 
 }
 .profit-btn {
@@ -137,7 +135,7 @@ button:focus {
     background: white;
     font-size: 22px;
     padding: 10px;
-    width: 60%;
+    width: 300px;
     border-radius: 10px;
     text-align: center;
 }
@@ -183,32 +181,31 @@ button:focus {
     display: block;
 }
 
-
 /* --------------------- Canvas  --------------------------  */
 
-.canvasContainerArea {
-    width: 75vh; /* 75% от высоты экрана */
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 1px;
-    justify-content: center;
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.cellArea {
-    width: 90%;
-    padding-top: 90%; /* Это делает ячейки квадратными */
-    position: relative;
-    background-image: url('./assets/cell.png'); /* Путь к вашему изображению */
-    background-size: cover; /* Изображение будет покрывать всю ячейку */
-    background-position: center; /* Центрировать изображение */
-    border: 1px solid #ccc;
-    cursor: pointer;
+#app {
+    min-width: 400px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
-.cellArea.building {
-    background-image: url('./assets/cell-building.png'); /* Путь к вашему изображению building.png */
+#main-content {
+    flex-grow: 1;
 }
-.popupArea {
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+.popup {
     display: none;
     position: fixed;
     top: 50%;
@@ -216,22 +213,19 @@ button:focus {
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.popupArea.active {
+
+.popup-content button {
     display: block;
-}
-.overlayArea {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+    margin: 10px 0;
+    padding: 10px;
     width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 500;
 }
-.overlayArea.active {
-    display: block;
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
 }
