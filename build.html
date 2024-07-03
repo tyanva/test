@@ -1,10 +1,15 @@
 <div class="content-container">
     <div class="profit-btn">ПРИБЫЛЬ В ЧАС</div>
-    <div class="canvasContainerArea" id="canvasContainer"></div>
-    <div class="overlayArea" id="overlay"></div>
-    <div class="popupArea" id="popup">
-        <a href="./Game/index.html">Start build</a>
-        <br>
-        <button id="startBuildButton">Build here</button>
+
+    <div class="container">
+        <canvas id="gameCanvas"></canvas>
     </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close">&times;</span>
+            <button id="buildButton">Start building for 1 contract</button>
+            <button id="freeButton">Free</button>
+        </div>
+    </div>
+    
 </div>
