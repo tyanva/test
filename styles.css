@@ -191,8 +191,7 @@ body {
     align-items: center;
 }
 #app {
-    min-width: 400px;
-    max-width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
