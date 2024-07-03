@@ -37,7 +37,9 @@ function loadPage(page) {
         .then(html => {
             document.getElementById('main-content').innerHTML = html;
             setupTopNav();
-            setupCanvas(); // Добавим эту строку, чтобы инициализировать канвас при загрузке страницы
+            if (page === 'build') {
+                initializeCanvas();
+            }
         })
         .catch(error => {
             console.error('Error loading page:', error);
@@ -55,16 +57,14 @@ function loadTabContent(tab) {
         });
 }
 
-// Под вопросм : Этот код предотвращает прокрутку, 
-// когда одновременно задействовано более одного пальца, что 
-// может помочь предотвратить горизонтальную прокрутку из-за панорамирования.
+// Prevent scroll with multiple touch points
 document.addEventListener('touchmove', function(event) {
     if (event.touches.length > 1) {
         event.preventDefault();
     }
 }, { passive: false });
 
-//setting
+// Settings button functionality
 document.getElementById('settingsButton').addEventListener('click', function() {
     document.getElementById('settingsOverlay').classList.remove('hidden');
 });
@@ -73,31 +73,60 @@ document.getElementById('settingsCloseButton').addEventListener('click', functio
     document.getElementById('settingsOverlay').classList.add('hidden');
 });
 
-function setupCanvas() {
-    const canvasContainer = document.getElementById('canvasContainer');
-    if (!canvasContainer) return;
+function initializeCanvas() {
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const cellImage = new Image();
+    const buildingImage = new Image();
+    cellImage.src = './assets/cell.png';
+    buildingImage.src = './assets/building.png';
 
-    for (let i = 0; i < 25; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'cellArea';
-        cell.addEventListener('click', function() {
-            selectedCell = cell;
-            document.getElementById('popup').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        });
-        canvasContainer.appendChild(cell);
-    }
+    const cellSize = 100;
+    const gridSize = 5;
 
-    document.getElementById('overlay').addEventListener('click', function() {
-        document.getElementById('popup').classList.remove('active');
-        document.getElementById('overlay').classList.remove('active');
-    });
+    canvas.width = cellSize * gridSize;
+    canvas.height = cellSize * gridSize;
 
-    document.getElementById('startBuildButton').addEventListener('click', function() {
-        if (selectedCell) {
-            selectedCell.classList.add('building');
+    cellImage.onload = () => {
+        for (let row = 0; row < gridSize; row++) {
+            for (let col = 0; col < gridSize; col++) {
+                ctx.drawImage(cellImage, col * cellSize, row * cellSize, cellSize, cellSize);
+            }
         }
-        document.getElementById('popup').classList.remove('active');
-        document.getElementById('overlay').classList.remove('active');
+    };
+
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const col = Math.floor(x / cellSize);
+        const row = Math.floor(y / cellSize);
+
+        const popup = document.getElementById('popup');
+        popup.style.display = 'block';
+
+        const buildButton = document.getElementById('buildButton');
+        buildButton.onclick = () => {
+            window.location.href = './Game/index.html';
+        };
+
+        const freeButton = document.getElementById('freeButton');
+        freeButton.onclick = () => {
+            ctx.drawImage(buildingImage, col * cellSize, row * cellSize, cellSize, cellSize);
+            popup.style.display = 'none';
+        };
+
+        // Close popup on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target == popup) {
+                popup.style.display = 'none';
+            }
+        });
+
+        // Close popup with close button
+        const closePopup = document.getElementById('closePopup');
+        closePopup.onclick = () => {
+            popup.style.display = 'none';
+        };
     });
 }
