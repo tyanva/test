@@ -191,7 +191,7 @@ body {
     align-items: center;
 }
 #app {
-    width: 450px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
